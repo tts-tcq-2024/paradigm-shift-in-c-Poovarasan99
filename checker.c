@@ -1,20 +1,30 @@
 #include <stdio.h>
 #include <assert.h>
+
 int checkRange(float data, float min, float max){
+ int output = 0;
+ if (data > max || data < min)
+ {
+ output = 1;
+ }
+ return output;
 }
-int batteryIsOk(float temperature, float soc, float chargeRate) {
-  if(temperature < 0 || temperature > 45) {
-    printf("Temperature out of range!\n");
-    return 0;
-  } else if(soc < 20 || soc > 80) {
-    printf("State of Charge out of range!\n");
-    return 0;
-  } else if(chargeRate > 0.8) {
-    printf("Charge Rate out of range!\n");
-    return 0;
-  }
+
+int printLogs(const char* parameter, int checkRangeResult){
+ if(checkRangeResult == 1){
+  printf("%s out of range \n",parameter);
   return 1;
+ }
+ return 0;
 }
+
+int batteryIsOk(float temperature, float soc, float chargeRate) {
+  printLogs("Temperature", checkRange(temperature,0,45));
+  printLogs("State of Charge", checkRange(soc,20,80));
+  printLogs("Charge Rate",checkRange(chargeRate,0,0.8));
+  return 0;
+}
+
 
 int main() {
   assert(batteryIsOk(25, 70, 0.7));
