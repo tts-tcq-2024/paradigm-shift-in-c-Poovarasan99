@@ -32,6 +32,7 @@ int batteryIsOk(float temperature, float soc, float chargeRate) {
   checkRangeResult = checkRange(chargeRate,0,0.8);
   return printLogs("Charge Rate",checkRangeResult);
  }
+ return 1;
 }
 
 
