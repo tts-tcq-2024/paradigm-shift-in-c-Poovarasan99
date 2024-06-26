@@ -9,29 +9,32 @@ int checkRange(float data, float min, float max){
  return output;
 }
 
-int CheckParam(float temperature, float soc, float chargeRate){
-    float batteryParam[3][3] = {{temperature,0,45}, {soc,20,80}, {chargeRate,0,0.8}};
-    int index = 0;
-    int checkRangeResult = 0;
-    while (index < 4){
-     checkRangeResult = checkRange(batteryParam[index][0],batteryParam[index][1],batteryParam[index][2]);
-     if (checkRangeResult == 1){
-     break;
-     }
-     index++;
-    }
-    return index;
-}
-
-int batteryIsOk(float temperature, float soc, float chargeRate) {
- char nameOfParam[3][12] = {"Temperature","State of Charge","Charge Rate"};
- int index = 0;
- index = CheckParam(temperature, soc, chargeRate);
- if (index < 3){
- printf("%s out of range!\n",nameOfParam[index]);
+int printLogs(const char* parameter, int checkRangeResult){
+ if(checkRangeResult == 1){
+  printf("%s out of range!\n",parameter);
+  return 0;
+ }
+ else{
+  return 1;
  }
 }
 
+int batteryIsOk(float temperature, float soc, float chargeRate) {
+ int checkRangeResult = 1;
+ if (checkRange(temperature,0,45) == 1){
+  printf ("Temperature out of range!");
+  return 0;
+ }
+ else if(checkRange(soc,20,80) == 1){
+  printf("State of Charge out of range!");
+  return 0;
+ }
+ else{
+  checkRangeResult = checkRange(chargeRate,0,0.8);
+  return printLogs("Charge Rate",checkRangeResult);
+ }
+ return 1;
+}
 
 int main() {
   assert(batteryIsOk(25, 70, 0.7));
