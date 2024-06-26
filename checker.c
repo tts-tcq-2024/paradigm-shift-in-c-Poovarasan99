@@ -9,23 +9,29 @@ int checkRange(float data, float min, float max){
  }
  return output;
 }
-
 int printLogs(const char* parameter, int checkRangeResult){
  if(checkRangeResult == 1){
   printf("%s out of range \n",parameter);
   return 0;
  }
- return 1;
+ else{
+  return 1;
+ }
 }
-
 int batteryIsOk(float temperature, float soc, float chargeRate) {
  int checkRangeResult = 1;
- checkRangeResult = checkRange(temperature,0,45);
-  return printLogs("Temperature", checkRangeResult);
- checkRangeResult = checkRange(soc,20,80);
-  return printLogs("State of Charge", checkRangeResult);
- checkRangeResult = checkRange(chargeRate,0,0.8);
+ if (checkRange(temperature,0,45) == 0){
+  printf ("Temperature out of range");
+  return 0;
+ }
+ else if(checkRange(soc,20,80) == 0){
+  printf("State of Charge out of range");
+  return 0;
+ }
+ else{
+  checkRangeResult = checkRange(chargeRate,0,0.8);
   return printLogs("Charge Rate",checkRangeResult);
+ }
 }
 
 
