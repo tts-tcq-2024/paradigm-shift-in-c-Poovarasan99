@@ -20,11 +20,11 @@ int printLogs(const char* parameter, int checkRangeResult){
 }
 int batteryIsOk(float temperature, float soc, float chargeRate) {
  int checkRangeResult = 1;
- if (checkRange(temperature,0,45) == 0){
+ if (checkRange(temperature,0,45) == 1){
   printf ("Temperature out of range!");
   return 0;
  }
- else if(checkRange(soc,20,80) == 0){
+ else if(checkRange(soc,20,80) == 1){
   printf("State of Charge out of range!");
   return 0;
  }
