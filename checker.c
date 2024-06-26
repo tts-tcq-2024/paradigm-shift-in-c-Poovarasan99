@@ -19,9 +19,13 @@ int printLogs(const char* parameter, int checkRangeResult){
 }
 
 int batteryIsOk(float temperature, float soc, float chargeRate) {
-  printLogs("Temperature", checkRange(temperature,0,45));
-  printLogs("State of Charge", checkRange(soc,20,80));
-  printLogs("Charge Rate",checkRange(chargeRate,0,0.8));
+ int checkRangeResult = 1;
+ checkRangeResult = checkRange(temperature,0,45);
+  printLogs("Temperature", checkRangeResult);
+ checkRangeResult = checkRange(soc,20,80);
+  printLogs("State of Charge", checkRangeResult);
+ checkRangeResult = checkRange(chargeRate,0,0.8);
+  printLogs("Charge Rate",checkRangeResult);
   return 0;
 }
 
