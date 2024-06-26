@@ -11,7 +11,7 @@ int checkRange(float data, float min, float max){
 }
 int printLogs(const char* parameter, int checkRangeResult){
  if(checkRangeResult == 1){
-  printf("%s out of range \n",parameter);
+  printf("%s out of range!\n",parameter);
   return 0;
  }
  else{
@@ -21,11 +21,11 @@ int printLogs(const char* parameter, int checkRangeResult){
 int batteryIsOk(float temperature, float soc, float chargeRate) {
  int checkRangeResult = 1;
  if (checkRange(temperature,0,45) == 0){
-  printf ("Temperature out of range");
+  printf ("Temperature out of range!");
   return 0;
  }
  else if(checkRange(soc,20,80) == 0){
-  printf("State of Charge out of range");
+  printf("State of Charge out of range!");
   return 0;
  }
  else{
