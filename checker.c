@@ -5,10 +5,10 @@
 
 int checkRange(float data, float min, float max)
 {
- int output = 0;
+ int output = 1;
  if (data > max || data < min)
  {
-  output = 1;
+  output = 0;
  }
  return output;
 }
