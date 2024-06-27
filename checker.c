@@ -1,39 +1,52 @@
 #include <stdio.h>
 #include <assert.h>
 
-int checkRange(float data, float min, float max){
+#define OUTOFBOUNDARY 1
+
+int checkRange(float data, float min, float max)
+{
  int output = 0;
- if (data > max || data < min){
- output = 1;
+ if (data > max || data < min)
+ {
+  output = 1;
  }
  return output;
 }
 
-int printLogs(const char* parameter, int checkRangeResult){
- if(checkRangeResult == 1){
-  printf("%s out of range!\n",parameter);
-  return 0;
- }
- else{
-  return 1;
- }
+/*Function to print the error logs*/
+void logger(const char* stringToBePrinted)
+{
+ printf("%s out of range!\n",stringToBePrinted);
 }
 
-int batteryIsOk(float temperature, float soc, float chargeRate) {
- int checkRangeResult = 1;
- if (checkRange(temperature,0,45) == 1){
-  printf ("Temperature out of range!");
-  return 0;
+/*Function to check whether the battery paramter is within the range*/
+int boundaryCheck(const char* batteryParameterString, int checkRangeResult)
+{
+ if(checkRangeResult == OUTOFBOUNDARY)
+ {
+  logger(batteryParameterString);
+  return 1;
  }
- else if(checkRange(soc,20,80) == 1){
-  printf("State of Charge out of range!");
-  return 0;
+ return 0;
+}
+
+int batteryIsOk(float temperature, float soc, float chargeRate) 
+{
+ int functionResult = 1; 
+ if(boundaryCheck("Temperature", checkRange(temperature,0,45)) == OUTOFBOUNDARY)
+ {
+  functionResult = 0;
  }
- else{
-  checkRangeResult = checkRange(chargeRate,0,0.8);
-  return printLogs("Charge Rate",checkRangeResult);
+ else if(boundaryCheck("State of Charge", checkRange(soc,20,80)) == OUTOFBOUNDARY)
+ {
+  functionResult = 0;
  }
- return 1;
+ else
+ {
+  functionResult = boundaryCheck("Charge Rate",checkRange(chargeRate,0,0.8));
+ }
+ }
+  return functionResult;
 }
 
 int main() {
