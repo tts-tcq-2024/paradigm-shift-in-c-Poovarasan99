@@ -26,9 +26,8 @@ int boundaryCheck(const char* batteryParameterString, int checkRangeResult)
  if(checkRangeResult == OUTOFBOUNDARY)
  {
   logger(batteryParameterString);
-  return OUTOFBOUNDARY;
  }
- return WITHINRANGE;
+ return checkRangeResult;
 }
 
 int batteryIsOk(float temperature, float soc, float chargeRate) 
