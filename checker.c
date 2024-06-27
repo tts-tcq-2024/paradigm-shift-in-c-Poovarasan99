@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <assert.h>
 
-#define OUTOFBOUNDARY 1
+#define OUTOFBOUNDARY 0
 
 int checkRange(float data, float min, float max)
 {
@@ -25,9 +25,9 @@ int boundaryCheck(const char* batteryParameterString, int checkRangeResult)
  if(checkRangeResult == OUTOFBOUNDARY)
  {
   logger(batteryParameterString);
-  return 1;
+  return 0;
  }
- return 0;
+ return 1;
 }
 
 int batteryIsOk(float temperature, float soc, float chargeRate) 
