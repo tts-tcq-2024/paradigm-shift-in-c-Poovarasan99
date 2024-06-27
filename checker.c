@@ -8,7 +8,7 @@ int checkRange(float data, float min, float max)
  int output = 1;
  if (data > max || data < min)
  {
-  output = 0;
+  output = OUTOFBOUNDARY;
  }
  return output;
 }
