@@ -35,7 +35,7 @@ int batteryIsOk(float temperature, float soc, float chargeRate)
  }
  else
  {
-  functionResult = checkRange(chargeRate,0,0.8,Charge Rate");
+  functionResult = checkRange(chargeRate,0,0.8,"Charge Rate");
  }
   return functionResult;
 }
