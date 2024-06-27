@@ -4,7 +4,7 @@
 #define OUTOFBOUNDARY 0
 #define WITHINRANGE 1
 
-/*Function to check whether the battery paramter is within the range*/
+/*Function to check whether the battery parameter is within the range*/
 int checkRange(float data, float min, float max, const char* nameOfBatteryParameter)
 {
  int output = WITHINRANGE;
