@@ -6,7 +6,7 @@
 
 int checkRange(float data, float min, float max)
 {
- int WITHINRANGE = 1;
+ int output = WITHINRANGE;
  if (data > max || data < min)
  {
   output = OUTOFBOUNDARY;
