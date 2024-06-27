@@ -45,7 +45,6 @@ int batteryIsOk(float temperature, float soc, float chargeRate)
  {
   functionResult = boundaryCheck("Charge Rate",checkRange(chargeRate,0,0.8));
  }
- }
   return functionResult;
 }
 
