@@ -5,13 +5,13 @@
 #define WITHINRANGE 1
 
 /*Function to check whether the battery paramter is within the range*/
-int checkRange(float data, float min, float max)
+int checkRange(float data, float min, float max, const char* nameOfBatteryParameter)
 {
  int output = WITHINRANGE;
  if (data > max || data < min)
  {
   output = OUTOFBOUNDARY;
-  logger(batteryParameterString);
+  logger(nameOfBatteryParameter);
  }
  return output;
 }
